@@ -1,3 +1,32 @@
+function getTimezoneOffsetForDate(date, timeZone) {
+    const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+    const tzDate = new Date(date.toLocaleString('en-US', { timeZone }));
+    return (utcDate.getTime() - tzDate.getTime()) / 60000;
+}
+
+function isDST(date, timeZone) {
+    const year = date.getFullYear();
+    // A date in January (standard time for northern hemisphere)
+    const jan = new Date(Date.UTC(year, 0, 1));
+    // A date in June (daylight time for northern hemisphere)
+    const jul = new Date(Date.UTC(year, 6, 1));
+
+    const janOffset = getTimezoneOffsetForDate(jan, timeZone);
+    const julOffset = getTimezoneOffsetForDate(jul, timeZone);
+
+    // If offsets are the same, the zone doesn't observe DST
+    if (janOffset === julOffset) {
+        return false;
+    }
+
+    // Get current offset
+    const currentOffset = getTimezoneOffsetForDate(date, timeZone);
+
+    // DST is active if the current offset matches the "summer" offset, which has a smaller value.
+    return currentOffset === Math.min(janOffset, julOffset);
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const clocks = document.querySelectorAll('.clock');
 
@@ -56,6 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 clock.classList.add('pm');
                 clock.classList.remove('am');
+            }
+
+            // DST Check
+            const cityNameElement = clock.nextElementSibling;
+            const originalCityName = cityNameElement.dataset.originalName || cityNameElement.textContent;
+            if (!cityNameElement.dataset.originalName) {
+                cityNameElement.dataset.originalName = cityNameElement.textContent;
+            }
+
+            if (isDST(now, timezone)) {
+                cityNameElement.innerHTML = `${originalCityName} <span class="dst">*</span>`;
+            } else {
+                cityNameElement.textContent = originalCityName;
             }
         });
     }

@@ -92,6 +92,11 @@ body {
     letter-spacing: 2px;
 }
 
+.city-name .dst {
+    color: #e74c3c;
+    margin-left: 5px;
+}
+
 .center-dot {
     width: 10px;
     height: 10px;
