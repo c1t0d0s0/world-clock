@@ -1,0 +1,197 @@
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --clock-border-color: #888;
+    --am-bg-color: #34495e;
+    --pm-bg-color: #1a2531;
+    --hour-hand-color: #ffffff;
+    --minute-hand-color: #ffffff;
+    --second-hand-color: #e74c3c;
+    --center-dot-color: #ffffff;
+    --tick-color: #cccccc;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.clock-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 60px;
+    justify-items: center;
+    width: 100%;
+    max-width: 900px;
+}
+
+.clock-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.utc-wrapper {
+    grid-column: 1 / -1; /* Span all columns */
+    justify-self: center;
+}
+
+.clock {
+    width: 180px;
+    height: 180px;
+    border: 4px solid var(--clock-border-color);
+    border-radius: 50%;
+    position: relative;
+    transition: background-color 0.5s ease;
+}
+
+.tick {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    background-color: var(--tick-color);
+    transform-origin: 50% 0;
+}
+
+.clock .tick:nth-child(5) { transform: translate(-50%, -50%) rotate(0deg) translateY(-80px); width: 4px; height: 15px;}
+.clock .tick:nth-child(6) { transform: translate(-50%, -50%) rotate(30deg) translateY(-80px); }
+.clock .tick:nth-child(7) { transform: translate(-50%, -50%) rotate(60deg) translateY(-80px); }
+.clock .tick:nth-child(8) { transform: translate(-50%, -50%) rotate(90deg) translateY(-80px); width: 4px; height: 15px;}
+.clock .tick:nth-child(9) { transform: translate(-50%, -50%) rotate(120deg) translateY(-80px); }
+.clock .tick:nth-child(10) { transform: translate(-50%, -50%) rotate(150deg) translateY(-80px); }
+.clock .tick:nth-child(11) { transform: translate(-50%, -50%) rotate(180deg) translateY(-80px); width: 4px; height: 15px;}
+.clock .tick:nth-child(12) { transform: translate(-50%, -50%) rotate(210deg) translateY(-80px); }
+.clock .tick:nth-child(13) { transform: translate(-50%, -50%) rotate(240deg) translateY(-80px); }
+.clock .tick:nth-child(14) { transform: translate(-50%, -50%) rotate(270deg) translateY(-80px); width: 4px; height: 15px;}
+.clock .tick:nth-child(15) { transform: translate(-50%, -50%) rotate(300deg) translateY(-80px); }
+.clock .tick:nth-child(16) { transform: translate(-50%, -50%) rotate(330deg) translateY(-80px); }
+
+
+.clock.am {
+    background-color: var(--am-bg-color);
+}
+
+.clock.pm {
+    background-color: var(--pm-bg-color);
+}
+
+.city-name {
+    margin-top: 15px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.center-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--center-dot-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.hand {
+    --rotation: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+    border-radius: 4px;
+}
+
+.hour-hand {
+    width: 5px;
+    height: 50px;
+    background-color: var(--hour-hand-color);
+}
+
+.minute-hand {
+    width: 3px;
+    height: 70px;
+    background-color: var(--minute-hand-color);
+}
+
+.second-hand {
+    width: 2px;
+    height: 80px;
+    background-color: var(--second-hand-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .clock-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 40px;
+    }
+    .utc-wrapper {
+        grid-column: 1 / -1;
+    }
+    .clock {
+        width: 150px;
+        height: 150px;
+    }
+    .clock .tick:nth-child(5) { transform: translate(-50%, -50%) rotate(0deg) translateY(-65px); width: 3px; height: 12px;}
+    .clock .tick:nth-child(6) { transform: translate(-50%, -50%) rotate(30deg) translateY(-65px); }
+    .clock .tick:nth-child(7) { transform: translate(-50%, -50%) rotate(60deg) translateY(-65px); }
+    .clock .tick:nth-child(8) { transform: translate(-50%, -50%) rotate(90deg) translateY(-65px); width: 3px; height: 12px;}
+    .clock .tick:nth-child(9) { transform: translate(-50%, -50%) rotate(120deg) translateY(-65px); }
+    .clock .tick:nth-child(10) { transform: translate(-50%, -50%) rotate(150deg) translateY(-65px); }
+    .clock .tick:nth-child(11) { transform: translate(-50%, -50%) rotate(180deg) translateY(-65px); width: 3px; height: 12px;}
+    .clock .tick:nth-child(12) { transform: translate(-50%, -50%) rotate(210deg) translateY(-65px); }
+    .clock .tick:nth-child(13) { transform: translate(-50%, -50%) rotate(240deg) translateY(-65px); }
+    .clock .tick:nth-child(14) { transform: translate(-50%, -50%) rotate(270deg) translateY(-65px); width: 3px; height: 12px;}
+    .clock .tick:nth-child(15) { transform: translate(-50%, -50%) rotate(300deg) translateY(-65px); }
+    .clock .tick:nth-child(16) { transform: translate(-50%, -50%) rotate(330deg) translateY(-65px); }
+
+    .hour-hand { height: 40px; }
+    .minute-hand { height: 60px; }
+    .second-hand { height: 65px; }
+}
+
+@media (max-width: 480px) {
+    .clock-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .utc-wrapper {
+        grid-column: auto;
+    }
+    .clock {
+        width: 200px;
+        height: 200px;
+    }
+    .clock .tick:nth-child(5) { transform: translate(-50%, -50%) rotate(0deg) translateY(-90px); width: 4px; height: 15px;}
+    .clock .tick:nth-child(6) { transform: translate(-50%, -50%) rotate(30deg) translateY(-90px); }
+    .clock .tick:nth-child(7) { transform: translate(-50%, -50%) rotate(60deg) translateY(-90px); }
+    .clock .tick:nth-child(8) { transform: translate(-50%, -50%) rotate(90deg) translateY(-90px); width: 4px; height: 15px;}
+    .clock .tick:nth-child(9) { transform: translate(-50%, -50%) rotate(120deg) translateY(-90px); }
+    .clock .tick:nth-child(10) { transform: translate(-50%, -50%) rotate(150deg) translateY(-90px); }
+    .clock .tick:nth-child(11) { transform: translate(-50%, -50%) rotate(180deg) translateY(-90px); width: 4px; height: 15px;}
+    .clock .tick:nth-child(12) { transform: translate(-50%, -50%) rotate(210deg) translateY(-90px); }
+    .clock .tick:nth-child(13) { transform: translate(-50%, -50%) rotate(240deg) translateY(-90px); }
+    .clock .tick:nth-child(14) { transform: translate(-50%, -50%) rotate(270deg) translateY(-90px); width: 4px; height: 15px;}
+    .clock .tick:nth-child(15) { transform: translate(-50%, -50%) rotate(300deg) translateY(-90px); }
+    .clock .tick:nth-child(16) { transform: translate(-50%, -50%) rotate(330deg) translateY(-90px); }
+
+    .hour-hand { height: 55px; }
+    .minute-hand { height: 80px; }
+    .second-hand { height: 90px; }
+    .city-name {
+        font-size: 1.3em;
+    }
+}
