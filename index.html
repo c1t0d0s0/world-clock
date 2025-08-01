@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Clock</title>
     <link rel="stylesheet" href="style.css">
+    <script src="config.js" onerror="this.onerror=null;this.src='';"></script>
+    <!-- Google tag (gtag.js) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      if (typeof GTM_ID !== 'undefined') {
+        gtag('config', GTM_ID);
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`;
+        document.head.appendChild(script);
+      }
+    </script>
 </head>
 <body>
 
