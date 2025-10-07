@@ -30,7 +30,6 @@ body {
     gap: 40px 60px;
     justify-items: center;
     width: 100%;
-    max-width: 900px;
 }
 
 .clock-wrapper {
@@ -198,5 +197,44 @@ body {
     .second-hand { height: 90px; }
     .city-name {
         font-size: 1.3em;
+    }
+}
+
+@media (min-width: 901px) {
+    .clock-container {
+        padding: 0 40px; /* Add some padding on the sides */
+    }
+    .clock {
+        width: 220px;
+        height: 220px;
+    }
+
+    .clock .tick:nth-child(5) { transform: translate(-50%, -50%) rotate(0deg) translateY(-100px); width: 4px; height: 18px;}
+    .clock .tick:nth-child(6) { transform: translate(-50%, -50%) rotate(30deg) translateY(-100px); }
+    .clock .tick:nth-child(7) { transform: translate(-50%, -50%) rotate(60deg) translateY(-100px); }
+    .clock .tick:nth-child(8) { transform: translate(-50%, -50%) rotate(90deg) translateY(-100px); width: 4px; height: 18px;}
+    .clock .tick:nth-child(9) { transform: translate(-50%, -50%) rotate(120deg) translateY(-100px); }
+    .clock .tick:nth-child(10) { transform: translate(-50%, -50%) rotate(150deg) translateY(-100px); }
+    .clock .tick:nth-child(11) { transform: translate(-50%, -50%) rotate(180deg) translateY(-100px); width: 4px; height: 18px;}
+    .clock .tick:nth-child(12) { transform: translate(-50%, -50%) rotate(210deg) translateY(-100px); }
+    .clock .tick:nth-child(13) { transform: translate(-50%, -50%) rotate(240deg) translateY(-100px); }
+    .clock .tick:nth-child(14) { transform: translate(-50%, -50%) rotate(270deg) translateY(-100px); width: 4px; height: 18px;}
+    .clock .tick:nth-child(15) { transform: translate(-50%, -50%) rotate(300deg) translateY(-100px); }
+    .clock .tick:nth-child(16) { transform: translate(-50%, -50%) rotate(330deg) translateY(-100px); }
+
+    .hour-hand {
+        width: 6px;
+        height: 60px;
+    }
+    .minute-hand {
+        width: 4px;
+        height: 90px;
+    }
+    .second-hand {
+        width: 2px;
+        height: 100px;
+    }
+    .city-name {
+        font-size: 1.4em;
     }
 }
