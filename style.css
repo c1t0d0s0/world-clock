@@ -59,7 +59,7 @@ body {
     width: 2px;
     height: 10px;
     background-color: var(--tick-color);
-    transform-origin: 50% 0;
+    transform-origin: center;
 }
 
 .clock .tick:nth-child(5) { transform: translate(-50%, -50%) rotate(0deg) translateY(-80px); width: 4px; height: 15px;}
